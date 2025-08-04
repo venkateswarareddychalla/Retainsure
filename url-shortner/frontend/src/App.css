@@ -1,0 +1,392 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.app-content {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.app-title {
+  font-size: 2.2rem;
+  color: #4361ee;
+  margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding: 1.2rem 1.5rem;
+  background: #f8f9ff;
+  border-bottom: 1px solid #eee;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  color: #3a0ca3;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background: #f8fafc;
+}
+
+.input:focus {
+  border-color: #4361ee;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.button {
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shorten-button {
+  background: #4361ee;
+  color: white;
+}
+
+.shorten-button:not(:disabled):hover {
+  background: #3a0ca3;
+}
+
+.stats-button {
+  background: #7209b7;
+  color: white;
+}
+
+.stats-button:not(:disabled):hover {
+  background: #560bad;
+}
+
+.button.loading {
+  position: relative;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.result-box {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: #f8f9ff;
+  border-radius: 8px;
+  border-left: 4px solid #4361ee;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.result-label {
+  font-weight: 600;
+  color: #3a0ca3;
+}
+
+.copy-status {
+  font-size: 0.9rem;
+  color: #4cc9f0;
+  font-weight: 500;
+}
+
+.short-url-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 8px;
+  padding: 0.8rem;
+  border: 1px solid #e2e8f0;
+}
+
+.short-url {
+  flex: 1;
+  color: #4361ee;
+  font-weight: 500;
+  text-decoration: none;
+  word-break: break-all;
+  padding-right: 10px;
+  transition: color 0.3s;
+}
+
+.short-url:hover {
+  color: #3a0ca3;
+  text-decoration: underline;
+}
+
+.copy-button {
+  background: #f1f5fe;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-button:hover {
+  background: #4361ee;
+}
+
+.copy-icon {
+  width: 20px;
+  height: 20px;
+  fill: #4361ee;
+  transition: fill 0.3s;
+}
+
+.copy-button:hover .copy-icon {
+  fill: white;
+}
+
+.stats-box {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: #f9f5ff;
+  border-radius: 8px;
+  border-left: 4px solid #7209b7;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #f0eaff;
+}
+
+.stat-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.stat-label {
+  font-weight: 600;
+  color: #7209b7;
+  margin-bottom: 0.4rem;
+}
+
+.stat-value {
+  color: #4a5568;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  word-break: break-all;
+  font-size: 0.95rem;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+  background: #fff0f0;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border-left: 4px solid #f72585;
+}
+
+.error-icon {
+  width: 24px;
+  height: 24px;
+  fill: #f72585;
+}
+
+.error-text {
+  color: #e53e3e;
+  font-weight: 500;
+}
+
+.app-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-content {
+    padding: 1.5rem;
+  }
+  
+  .app-title {
+    font-size: 1.8rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1rem;
+  }
+  
+  .card-header {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .app-content {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+  
+  .app-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+  
+  .app-title {
+    font-size: 1.6rem;
+  }
+  
+  .result-box,
+  .stats-box {
+    padding: 1rem;
+  }
+  
+  .short-url-container {
+    padding: 0.6rem;
+  }
+}
+
+.short-code-container {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.short-code {
+  margin-left: 10px;
+  color: #2c3e50;
+  background-color: #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+}
