@@ -29,8 +29,9 @@ const initializeDBAndServer = async () => {
       CREATE INDEX IF NOT EXISTS idx_short_code ON urls(short_code);
     `);
 
-    app.listen(3000, () => {
-      console.log("Server Running at http://localhost:3000/");
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server Running at http://localhost:${PORT}/`);
     });
   } catch (e) {
     console.log(`DB Error: ${e.message}`);
@@ -84,26 +85,24 @@ app.post("/api/shorten", async (req, res) => {
   }
 });
 
-// Redirect Endpoint
-app.get("/:short_code", async (req, res) => {
+// Place this after all /api routes to avoid conflict
+app.get('/:short_code', async (req, res, next) => {
+  // Prevent conflict with /api/* endpoints
+  if (req.path.startsWith('/api/')) return next();
   const { short_code } = req.params;
-  
   try {
     const row = await db.get(
-      "SELECT original_url FROM urls WHERE short_code = ?",
+      'SELECT original_url FROM urls WHERE short_code = ?',
       [short_code]
     );
-    
-    if (!row) return res.status(404).send("Not found");
-    
+    if (!row) return res.status(404).send('Not found');
     await db.run(
-      "UPDATE urls SET clicks = clicks + 1 WHERE short_code = ?",
+      'UPDATE urls SET clicks = clicks + 1 WHERE short_code = ?',
       [short_code]
     );
-    
     res.redirect(row.original_url);
   } catch (err) {
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 });
 
