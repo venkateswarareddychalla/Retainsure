@@ -44,6 +44,9 @@ function isValidUrl(url) {
   return /^https?:\/\/[^ "]+$/.test(url);
 }
 
+// Base URL configuration
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+
 // Shorten URL Endpoint
 app.post("/api/shorten", async (req, res) => {
   const { url } = req.body;
@@ -78,7 +81,7 @@ app.post("/api/shorten", async (req, res) => {
     
     res.json({ 
       short_code, 
-      short_url: `http://localhost:3000/${short_code}` 
+      short_url: `${BASE_URL}/${short_code}` 
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
